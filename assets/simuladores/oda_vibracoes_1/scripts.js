@@ -4,6 +4,7 @@ let unityInstance = null;
 let isSoundEnabled = false;
 let currentPosition, controlsOffset, separationSpace;
 let urlGuardaChuva = "https://www.google.com/";
+let urlQuestionario = "https://www.google.com/";
 
 const controlsContainer = document.querySelector('.controls-container');
 const fullscreenBtn = document.getElementById('fullscreen-btn');
@@ -59,13 +60,13 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // 6) Ícones iniciais
   updateSoundIcon();
-  updateFullscreenIcon();
+  //updateFullscreenIcon();
 
   // 7) Desabilita F11
   document.addEventListener('keydown', disableF11);
 
   // 8) Atualiza ícone fullscreen ao mudar
-  document.addEventListener('fullscreenchange', updateFullscreenIcon);
+  //document.addEventListener('fullscreenchange', updateFullscreenIcon);
 
   // 9) Resize do canvas com debounce
   window.addEventListener('resize', debounce(resizeCanvas, 100));
@@ -381,14 +382,25 @@ function loadUnity() {
   document.body.appendChild(loaderScript);
 }
 
-// Chamada pelo Unity no fim da simulação (window.AbrirGuardaChuva()).
 function AbrirGuardaChuva() {
   // Dentro do ODA (iframe): avisa a página principal, que fecha o simulador
   // e volta para a página do equipamento.
+  SimulacaoConcluida();
+  // Aberto sozinho: comportamento original
+  window.open(urlGuardaChuva, '_blank').focus();
+}
+
+function AbrirQuestionario() {
+  // Dentro do ODA (iframe): avisa a página principal, que fecha o simulador
+  // e volta para a página do equipamento.
+  SimulacaoConcluida();
+  // Aberto sozinho: comportamento original
+  window.open(urlQuestionario, '_blank').focus();
+}
+
+function SimulacaoConcluida() {
   if (window.parent !== window) {
     window.parent.postMessage({ tipo: 'simulacao-concluida' }, '*');
     return;
   }
-  // Aberto sozinho: comportamento original
-  window.open(urlGuardaChuva, '_blank').focus();
 }
