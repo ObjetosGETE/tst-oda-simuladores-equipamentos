@@ -1,0 +1,178 @@
+/* ==========================================================
+   Visor LCD dos equipamentos (texto sobre o render)
+   ========================================================== */
+.lcd {
+  --k: 1; /* fator de escala do texto (1 = visor grande) */
+  position: absolute;
+  color: #222a22;
+  pointer-events: none;
+  z-index: 8;
+}
+
+/* ----- Bomba de amostragem ----- */
+.lcd--bomba {
+  --k: 0.585;
+  font-family: var(--fonte);
+}
+
+.lcd--bomba .lcd__bateria {
+  position: absolute;
+  left: 7%;
+  top: 38%;
+  width: calc(70px * var(--k));
+  height: calc(120px * var(--k));
+  border: calc(7px * var(--k)) solid #222a22;
+  border-radius: calc(6px * var(--k));
+  background: repeating-linear-gradient(
+      #222a22 0 calc(22px * var(--k)),
+      transparent calc(22px * var(--k)) calc(30px * var(--k))
+    )
+    calc(6px * var(--k)) calc(8px * var(--k)) /
+    calc(100% - calc(12px * var(--k))) calc(100% - calc(12px * var(--k)))
+    no-repeat;
+}
+
+.lcd--bomba .lcd__bateria::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: -18px;
+  width: calc(26px * var(--k));
+  height: calc(11px * var(--k));
+  margin-left: -13px;
+  background: #222a22;
+}
+
+.lcd--bomba .lcd__titulo {
+  position: absolute;
+  left: 8%;
+  top: 9%;
+  font-size: calc(46px * var(--k));
+  font-weight: 700;
+  transform: scaleX(0.85);
+  transform-origin: left;
+}
+
+.lcd--bomba .lcd__valor {
+  position: absolute;
+  right: 12%;
+  top: 22%;
+  font-family: var(--fonte-lcd-bomba);
+  font-size: calc(250px * var(--k));
+  line-height: 1;
+  letter-spacing: calc(16px * var(--k));
+}
+
+.lcd--bomba .lcd__valor--centro {
+  right: auto;
+  left: 28%;
+}
+
+.lcd--bomba .lcd__unidade {
+  position: absolute;
+  right: 10%;
+  bottom: 12%;
+  font-size: calc(44px * var(--k));
+  font-weight: 700;
+}
+
+.lcd--bomba .lcd__rodape {
+  position: absolute;
+  left: 22%;
+  bottom: 12%;
+  font-size: calc(44px * var(--k));
+  font-weight: 700;
+}
+
+.lcd--bomba .lcd__legenda {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 12%;
+  text-align: center;
+  font-size: calc(44px * var(--k));
+  font-weight: 700;
+}
+
+/* ----- Calibrador de vazão ----- */
+.lcd--calibrador {
+  --k: 0.7;
+  font-family: var(--fonte-lcd-calibrador);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1%;
+  color: #2c322a;
+  font-size: calc(52px * var(--k));
+  line-height: 1.15;
+}
+
+.lcd--calibrador .lcd__cab {
+  font-size: calc(44px * var(--k));
+  border-bottom: calc(3px * var(--k)) solid #2c322a;
+  margin-bottom: calc(18px * var(--k));
+  opacity: 0.85;
+}
+
+.lcd--calibrador .lcd__grande {
+  font-size: calc(78px * var(--k));
+  line-height: 1.1;
+}
+
+.lcd--calibrador .lcd__centro {
+  text-align: center;
+  font-size: calc(50px * var(--k));
+}
+
+.lcd--calibrador .lcd__menu {
+  margin-top: calc(22px * var(--k));
+  text-align: center;
+  font-size: calc(40px * var(--k));
+  letter-spacing: calc(1px * var(--k));
+}
+
+.lcd--calibrador .lcd__menu b {
+  background: #2c322a;
+  color: #c9d0bd;
+  padding: 0 calc(6px * var(--k));
+  font-weight: 400;
+}
+
+.lcd--calibrador .lcd__de {
+  text-align: center;
+  font-size: calc(40px * var(--k));
+  margin-top: calc(10px * var(--k));
+}
+
+/* ----- Termo-higro-barômetro ----- */
+.lcd--termo {
+  --k: 0.61;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 0 6%;
+  font-family: var(--fonte);
+}
+
+.lcd--termo .lcd__linha {
+  font-size: calc(110px * var(--k));
+  line-height: 1.05;
+}
+
+.lcd--termo .lcd__linha small {
+  display: inline-block;
+  width: calc(130px * var(--k));
+  font-size: calc(44px * var(--k));
+}
+
+.lcd--termo .lcd__centro {
+  align-self: center;
+  font-family: var(--fonte-lcd-bomba);
+  font-size: calc(120px * var(--k));
+}
+
+/* visor ampliado do ajuste de vazão (caixa de 700x420) */
+.ajuste__visor .lcd {
+  --k: 1;
+}

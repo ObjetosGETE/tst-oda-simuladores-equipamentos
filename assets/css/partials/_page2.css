@@ -1,0 +1,112 @@
+/**
+ * Page 2: Introdução (Introduction Screen)
+ */
+
+.page-2 {
+  background-color: var(--color-primary);
+  /* Expand to cover the entire viewport inside the bezel */
+  height: 100%;
+  background-image: url("../../img/bg-intro.jpg");
+}
+
+/* Page 2 Header styles (White text and white logo) */
+.page-2 .simulator-header {
+  margin-bottom: 2rem;
+}
+
+.page-2 .header-title-group h1 {
+  color: var(--color-white);
+}
+
+.page-2 .header-title-group p {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.page-2 .senac-logo path {
+  fill: var(--color-white) !important; /* Forces logo to render white */
+}
+
+/* Center card structure */
+.intro-card-container {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 25px; /* Leave space for fullscreen button */
+}
+
+.intro-card {
+  background-color: var(--color-white);
+  width: 813px;
+  height: 484px;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+  border: 5px solid #4a5e66;
+  @media (max-width: 991px) {
+    width: 70%;
+    height: 80%;
+  }
+}
+
+/* Text styles inside the card */
+.intro-text-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.intro-paragraph {
+  color: var(--color-text-dark);
+  font-size: 28px;
+  line-height: 32px;
+  text-align: left;
+  margin-bottom: 1rem;
+  @media (max-width: 991px) {
+    font-size: 40px;
+    line-height: 44px;
+  }
+}
+
+.intro-paragraph:last-child {
+  margin-bottom: 0;
+}
+
+/* Buttons inside the card */
+.intro-actions {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 30px;
+  flex-shrink: 0;
+}
+
+/* Custom button sizing inside card */
+.intro-actions .btn {
+  padding: 25px 27px;
+  border-radius: 8px;
+  font-size: 28px;
+  @media (max-width: 991px) {
+    font-size: 38px;
+  }
+}
+
+.intro-actions .btn-primary {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+.intro-actions .btn-primary:hover {
+  background-color: var(--color-primary-hover);
+}
+
+.intro-actions .btn-outline {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.intro-actions .btn-outline:hover {
+  background-color: var(--color-primary-light);
+}

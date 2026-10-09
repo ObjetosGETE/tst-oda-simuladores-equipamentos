@@ -1,0 +1,230 @@
+/* ==========================================================
+   Celular e tablet
+   ========================================================== */
+
+/* ----- aviso "Gire o aparelho" (celular em pé) ----- */
+.aviso-girar {
+  display: none;
+}
+
+@media (orientation: portrait) and (max-width: 600px) {
+  .palco-wrap {
+    visibility: hidden;
+  }
+
+  .aviso-girar {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 24px;
+    background: var(--laranja);
+    color: #fff;
+    font-family: var(--fonte);
+    text-align: center;
+  }
+
+  .aviso-girar p {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 700;
+  }
+
+  .aviso-girar small {
+    font-size: 16px;
+    opacity: 0.9;
+  }
+
+  /* desenho de um celular girando */
+  .aviso-girar__icone {
+    width: 56px;
+    height: 92px;
+    margin-bottom: 12px;
+    border: 5px solid #fff;
+    border-radius: 12px;
+    animation: girar-aparelho 2s ease-in-out infinite;
+  }
+}
+
+@keyframes girar-aparelho {
+  0%,
+  25% {
+    transform: rotate(0);
+  }
+  60%,
+  100% {
+    transform: rotate(-90deg);
+  }
+}
+
+/* ----- convite para tela cheia (aparelhos de toque) ----- */
+.tela-cheia {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.6);
+  font-family: var(--fonte);
+}
+
+.tela-cheia__caixa {
+  max-width: 420px;
+  padding: 20px 24px;
+  background: var(--branco);
+  border: 3px solid var(--laranja);
+  border-radius: var(--raio);
+  text-align: center;
+}
+
+.tela-cheia__caixa p {
+  margin: 0 0 16px;
+  font-size: 17px;
+  line-height: 1.35;
+}
+
+.tela-cheia__botoes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* aqui os botões ficam fora do palco, então usam tamanho real de tela
+   (seletor mais forte para não ser aumentado pelo modo compacto) */
+.tela-cheia .tela-cheia__botoes .btn {
+  min-width: 0;
+  height: 44px;
+  padding: 0 18px;
+  font-size: 16px;
+}
+
+.btn--secundario {
+  background: var(--branco);
+  color: var(--laranja-escuro);
+}
+
+/* ==========================================================
+   Modo compacto: telas pequenas (palco abaixo de 45% do tamanho).
+   O JS coloca a classe "compacto" no <html>. Aumenta textos e
+   áreas de toque para continuarem legíveis no celular/tablet.
+   ========================================================== */
+.compacto .instrucao {
+  max-width: 1150px;
+  padding: 26px 44px;
+  font-size: 44px;
+}
+
+.compacto .aviso {
+  width: 1050px;
+  font-size: 40px;
+}
+
+.compacto .dialogo {
+  width: 1560px;
+  bottom: 50px;
+  font-size: 46px;
+}
+
+.compacto .mensagem {
+  font-size: 42px;
+}
+
+.compacto .mensagem--topo {
+  width: 1400px;
+}
+
+.compacto .mensagem--rodape,
+.compacto .mensagem--rodape-esq {
+  max-width: 1300px;
+}
+
+.compacto .mensagem--esquerda {
+  max-width: 700px;
+}
+
+.compacto .mensagem__icone {
+  width: 48px;
+  height: 48px;
+  font-size: 34px;
+  line-height: 48px;
+}
+
+.compacto .balao {
+  width: 1000px;
+  font-size: 42px;
+}
+
+.compacto .btn {
+  min-width: 260px;
+  height: 92px;
+  font-size: 42px;
+}
+
+.compacto .btn__icone {
+  width: 36px;
+  height: 36px;
+}
+
+.compacto .balao .btn {
+  height: 80px;
+  font-size: 38px;
+  bottom: -40px;
+}
+
+.compacto .menu-lateral .btn-img img {
+  width: 430px;
+}
+
+.compacto .hotspot {
+  width: 150px;
+  height: 150px;
+  margin: -75px 0 0 -75px;
+}
+
+.compacto .ajuste__btn {
+  width: 300px;
+  height: 170px;
+  font-size: 42px;
+}
+
+.compacto .espera {
+  width: 1200px;
+  font-size: 42px;
+}
+
+.compacto .modal {
+  width: 1640px;
+  max-height: 990px;
+}
+
+.compacto .modal__titulo {
+  font-size: 56px;
+}
+
+.compacto .modal__corpo {
+  font-size: 42px;
+}
+
+.compacto .formula {
+  font-size: 38px;
+}
+
+.compacto .tela-branca__texto {
+  font-size: 46px;
+}
+
+.compacto .tela-branca__rodape-texto {
+  font-size: 42px;
+}
+
+.compacto .btn--rotina {
+  width: 760px;
+  height: 100px;
+}

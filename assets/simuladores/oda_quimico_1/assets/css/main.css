@@ -1,0 +1,17 @@
+/* ==========================================================
+   Simulador ODA – Químicos
+   Arquivo principal: apenas importa os partials
+   ========================================================== */
+@import url("https://fonts.googleapis.com/css2?family=Lexend:wght@600;700&family=Roboto:wght@400;500;700&display=swap");
+
+@import url("partials/_variaveis.css");
+@import url("partials/_base.css");
+@import url("partials/_palco.css");
+@import url("partials/_botoes.css");
+@import url("partials/_caixas.css");
+@import url("partials/_modal.css");
+@import url("partials/_hotspot.css");
+@import url("partials/_lcd.css");
+@import url("partials/_telas.css");
+@import url("partials/_mobile.css");
+@import url("partials/_preloader.css");

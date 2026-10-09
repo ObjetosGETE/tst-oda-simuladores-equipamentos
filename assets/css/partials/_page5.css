@@ -1,0 +1,668 @@
+/**
+ * Page 5: Detalhe do Equipamento (Equipment Details & Situations Screen)
+ */
+
+.page-5 {
+  height: 100%;
+  display: none;
+  flex-direction: column;
+}
+
+.page-5.active .simulator-header {
+  position: absolute;
+  top: 60px;
+  left: 60px;
+  right: 60px;
+}
+
+.detail-content-container {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  min-height: 0;
+  width: 100%;
+}
+
+/* --- Left Column: Equipment Preview & 3D Mock --- */
+.detail-left-col {
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: 20px;
+}
+
+/* Orange/peach preview card */
+.detail-preview-card {
+  width: 100%;
+  background-color: #fedbbf; /* Soft orange/peach background from PDF */
+  border: 2px solid var(--color-primary);
+  border-radius: 12px;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.detail-preview-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.detail-preview-content svg {
+  height: auto;
+  width: 380px;
+}
+
+.detail-preview-content img {
+  width: 380px;
+  height: 380px;
+  object-fit: contain;
+}
+
+/* 3D Button style overrides */
+.btn-3d-toggle {
+  width: 100%;
+  padding: 0.65rem 1.2rem;
+  font-size: 25px;
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  border-radius: 8px;
+}
+
+.btn-3d-toggle.active {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+.btn-3d-toggle svg {
+  margin-right: 4px;
+}
+
+/* Back button positioning in Left Column */
+.detail-back-container {
+  width: 100%;
+  position: absolute;
+  bottom: 60px;
+  left: 60px;
+}
+
+/* --- Right Column: Text & Situation Actions --- */
+.detail-right-col {
+  width: 1320px;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  overflow-y: auto;
+  padding: 80px;
+  border-left: 5px solid #b9c0c3;
+  justify-content: center;
+}
+
+.page-5.active .detail-right-col {
+  animation: slideInFromRight 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+.page-5.active .btn-3d-toggle,
+.page-5.active .detail-back-container {
+  animation: fadeInDetail 0.4s ease 0.15s both;
+}
+
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInDetail {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Custom Scrollbar for Right Column */
+.detail-right-col::-webkit-scrollbar {
+  width: 6px;
+}
+.detail-right-col::-webkit-scrollbar-track {
+  background: var(--color-light);
+  border-radius: 4px;
+}
+.detail-right-col::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 4px;
+}
+
+.detail-equipment-name {
+  color: var(--color-text-dark);
+  font-size: 35px;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+}
+
+.detail-equipment-description {
+  color: var(--color-text-dark);
+  font-size: 28px;
+  line-height: 32px;
+}
+
+.detail-divider {
+  margin: 60px 0;
+  border-color: var(--color-border);
+}
+
+/* Situations Section */
+.situations-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.situations-heading {
+  color: #34495e;
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.2rem;
+}
+
+.situations-subheading {
+  color: var(--color-text-muted);
+  font-size: 25px;
+  margin-bottom: 1.2rem;
+}
+
+/* Horizontal alignment of situation cards */
+.situations-container {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Situation card buttons */
+.situation-card {
+  flex: 1;
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 1.2rem 0.8rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition:
+    transform var(--transition-fast),
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast),
+    background-color var(--transition-fast);
+}
+
+.situation-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-md);
+  background-color: var(--color-primary-light);
+}
+
+/* Circle Badge with number inside */
+.situation-badge {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background-color: #ffe3d1;
+  color: var(--color-primary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+  transition:
+    background-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.situation-card:hover .situation-badge {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+.situation-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.situation-label {
+  font-weight: 700;
+  color: var(--color-text-dark);
+  font-size: 25px;
+}
+
+.situation-title {
+  font-size: 30px;
+  color: var(--color-text-muted);
+  font-style: italic;
+  word-break: break-word;
+}
+
+.situation-subtitle {
+  font-size: 25px;
+  color: var(--color-text-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* --- Modal 3D Viewer --- */
+.modal-3d {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease;
+}
+
+.modal-3d.active {
+  opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
+}
+
+.modal-3d-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  z-index: 1;
+}
+
+.modal-3d-container {
+  position: relative;
+  z-index: 2;
+  width: 85%;
+  max-width: 1260px;
+  height: 85%;
+  max-height: 850px;
+  background-color: var(--color-white);
+  border: 3px solid var(--color-primary);
+  border-radius: 16px;
+  box-shadow:
+    0 15px 40px rgba(0, 0, 0, 0.4),
+    0 0 25px rgba(243, 112, 33, 0.3);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transform: scale(0.9);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.modal-3d.active .modal-3d-container {
+  transform: scale(1);
+}
+
+.modal-3d-header {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  padding: 1.2rem 1.8rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.modal-3d-title {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--color-white);
+  text-transform: uppercase;
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+
+.modal-3d-close {
+  background: none;
+  border: none;
+  color: var(--color-white);
+  font-size: 45px;
+  font-weight: 300;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 5px;
+  transition:
+    transform var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.modal-3d-close:hover {
+  transform: scale(1.2);
+  color: #ffe3d1;
+}
+
+.modal-3d-body {
+  flex-grow: 1;
+  background: radial-gradient(circle at center, #ffffff 20%, #fedbbf 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  min-height: 320px;
+}
+
+.modal-3d-canvas-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+/* --- Modal 3D Carousel Section (below 3D Player) --- */
+.modal-3d-carousel-section {
+  background-color: #fffaf6;
+  border-top: 2px solid #fedbbf;
+  padding: 12px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex-shrink: 0;
+  z-index: 5;
+}
+
+.modal-3d-carousel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modal-3d-carousel-subtitle {
+  font-size: 19px;
+  font-weight: 700;
+  color: #34495e;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.modal-3d-carousel-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+  width: 100%;
+}
+
+.modal-3d-carousel-track {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 4px 2px;
+  flex-grow: 1;
+  scrollbar-width: none;
+}
+
+.modal-3d-carousel-track::-webkit-scrollbar {
+  display: none;
+}
+
+.modal-carousel-card {
+  flex: 1 1 0;
+  min-width: 250px;
+  max-width: 420px;
+  background-color: var(--color-white);
+  border: 2px solid var(--color-border);
+  border-radius: 10px;
+  padding: 8px 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition:
+    transform var(--transition-fast),
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast),
+    background-color var(--transition-fast);
+}
+
+.modal-carousel-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-primary);
+  background-color: var(--color-primary-light);
+  box-shadow: 0 4px 12px rgba(243, 112, 33, 0.2);
+}
+
+.modal-carousel-card-img {
+  width: 52px;
+  height: 52px;
+  border-radius: 8px;
+  background-color: #fedbbf;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+  padding: 4px;
+}
+
+.modal-carousel-card-img img,
+.modal-carousel-card-img svg {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.modal-carousel-card-info {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  min-width: 0;
+  flex-grow: 1;
+}
+
+.modal-carousel-card-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-text-dark);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.2;
+}
+
+.modal-carousel-card-action {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-primary);
+  margin-top: 3px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.btn-modal-carousel {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid var(--color-primary);
+  background-color: var(--color-white);
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition:
+    background-color var(--transition-fast),
+    color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.btn-modal-carousel:hover {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  transform: scale(1.08);
+}
+
+.modal-3d-footer {
+  background-color: var(--color-light);
+  border-top: 1px solid var(--color-border);
+  padding: 0.9rem 1.8rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.modal-3d-instruction {
+  font-size: 20px;
+  color: var(--color-text-muted);
+  font-weight: 500;
+}
+
+.btn-modal-close {
+  font-size: 20px;
+  padding: 0.5rem 1.8rem;
+  border-radius: 8px;
+}
+
+/* --- Muitas situações (ex.: Químico, 7 situações): grade compacta --- */
+.situations-container--many {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.situations-container--many .situation-card {
+  padding: 14px 10px;
+}
+
+.situations-container--many .situation-badge {
+  width: 56px;
+  height: 56px;
+  font-size: 26px;
+  margin-bottom: 8px;
+}
+
+.situations-container--many .situation-label {
+  font-size: 22px;
+}
+
+.situations-container--many .situation-title {
+  font-size: 21px;
+  line-height: 1.2;
+}
+
+.situations-container--many .situation-subtitle {
+  font-size: 18px;
+  line-height: 1.2;
+}
+
+.detail-right-col:has(.situations-container--many) .detail-divider {
+  margin: 36px 0;
+}
+
+/* --- Simulador da situação (iframe sobre o palco) --- */
+.sim-overlay {
+  position: absolute;
+  inset: -1px; /* compensa a borda de 1px do viewport: iframe com 1920×1080 exatos */
+  z-index: 600; /* acima do modal 3D e do botão de tela cheia */
+  background: #1b1b1b;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease;
+}
+
+.sim-overlay.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.sim-frame {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+/* Aba no topo central (os cantos são usados pelo próprio simulador) */
+.sim-tab {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 10px 8px 22px;
+  background: var(--color-primary);
+  border-radius: 0 0 14px 14px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  color: var(--color-white);
+}
+
+.sim-tab-title {
+  font-size: 18px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-right: 6px;
+}
+
+.sim-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 38px;
+  padding: 0 14px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.15);
+  color: var(--color-white);
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.sim-tab-btn:hover {
+  background: var(--color-white);
+  color: var(--color-primary);
+}

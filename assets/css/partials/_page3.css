@@ -1,0 +1,86 @@
+/**
+ * Page 3: Grid de Categorias (Category Grid Screen)
+ */
+
+.page-3 {
+  height: 100%;
+}
+
+.grid-content-container {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Category Grid Layout - 3 columns, 2 rows */
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 50px;
+}
+
+/* Category Card design */
+.category-card {
+  background-color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition:
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
+  width: 236px;
+  height: 292px;
+}
+
+.category-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Upper Icon area */
+.category-card-icon-wrapper {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.category-card-icon-wrapper img {
+  width: 220px;
+  height: 220px;
+  border-radius: 10px;
+}
+
+.category-svg-icon {
+  height: 150px;
+  width: 150px;
+  transition: transform var(--transition-fast);
+}
+
+.category-card:hover .category-svg-icon {
+  transform: scale(1.08);
+}
+
+/* Bottom footer text */
+.category-card-footer {
+  padding: 0.5rem 0.2rem;
+  text-align: center;
+  flex-shrink: 0;
+  transition: background-color var(--transition-fast);
+}
+
+.category-card:hover {
+  background-color: var(--color-primary-hover);
+}
+
+.category-card-footer h3 {
+  color: var(--color-white);
+  font-size: 30px;
+  font-weight: 600;
+  margin: 0;
+}

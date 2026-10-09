@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simulador de Equipamentos TST</title>
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="assets/css/main.css" />
+  </head>
+  <body>
+    <div class="tela-landscape">
+      <img src="assets/img/vire.gif" alt="" />
+      <p>Por favor, use o modo paisagem para acessar este conteúdo.</p>
+    </div>
+    <!-- Main Widescreen Simulator Frame Viewport -->
+    <div class="simulator-viewport">
+      <!-- Persistent Global Fullscreen Button -->
+      <button class="btn-fullscreen" title="Alternar Tela Cheia">
+        <svg
+          width="26"
+          height="26"
+          viewBox="0 0 26 26"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M0 7.42857C0 8.45424 0.831471 9.28571 1.85714 9.28571C2.88281 9.28571 3.71429 8.45424 3.71429 7.42857V3.71429H7.42857C8.45424 3.71429 9.28571 2.88281 9.28571 1.85714C9.28571 0.831471 8.45424 0 7.42857 0H1.85714C0.831471 0 0 0.831471 0 1.85714V7.42857Z"
+            fill="white"
+          />
+          <path
+            d="M26 7.42857C26 8.45424 25.1685 9.28571 24.1429 9.28571C23.1172 9.28571 22.2857 8.45424 22.2857 7.42857V3.71429H18.5714C17.5458 3.71429 16.7143 2.88281 16.7143 1.85714C16.7143 0.831471 17.5458 0 18.5714 0H24.1429C25.1685 0 26 0.831471 26 1.85714V7.42857Z"
+            fill="white"
+          />
+          <path
+            d="M0 18.5714C0 17.5458 0.831471 16.7143 1.85714 16.7143C2.88281 16.7143 3.71429 17.5458 3.71429 18.5714V22.2857H7.42857C8.45424 22.2857 9.28571 23.1172 9.28571 24.1429C9.28571 25.1685 8.45424 26 7.42857 26H1.85714C0.831471 26 0 25.1685 0 24.1429V18.5714Z"
+            fill="white"
+          />
+          <path
+            d="M26 18.5714C26 17.5458 25.1685 16.7143 24.1429 16.7143C23.1172 16.7143 22.2857 17.5458 22.2857 18.5714V22.2857H18.5714C17.5458 22.2857 16.7143 23.1172 16.7143 24.1429C16.7143 25.1685 17.5458 26 18.5714 26H24.1429C25.1685 26 26 25.1685 26 24.1429V18.5714Z"
+            fill="white"
+          />
+        </svg>
+      </button>
+
+      <!-- PAGE 1: Capa (Cover) -->
+      <section class="page page-1 active">
+        <div class="logo-container">
+          <!-- SVG Senac Colored Logo -->
+          <img
+            src="assets/img/logo_senac-desk.png"
+            alt="Senac Logo"
+            class="senac-logo"
+          />
+        </div>
+        <div class="cover-content">
+          <img
+            src="assets/img/logo_ODA_capa_desktop.png"
+            alt="Logo ODA, Simulador: Equipamentos para monitoramento de riscos ambientais"
+          />
+          <button class="btn btn-primary btn-start">Iniciar</button>
+        </div>
+      </section>
+
+      <!-- PAGE 2: Introdução (Slides) -->
+      <section class="page page-2">
+        <header class="simulator-header">
+          <div class="header-title-group">
+            <img
+              class="logo-oda"
+              src="assets/img/logo_ODA_telas.png"
+              alt="Logo ODA, Simulador: Equipamentos para monitoramento de riscos ambientais"
+            />
+          </div>
+          <img
+            src="assets/img/Logo_SENAC.png"
+            alt="Senac Logo"
+            class="senac-logo"
+          />
+        </header>
+        <div class="intro-card-container">
+          <!-- Rendered dynamically via js/modules/intro.js -->
+          <div class="intro-card"></div>
+        </div>
+      </section>
+
+      <!-- PAGE 3: Grid de Categorias -->
+      <section class="page page-3">
+        <header class="simulator-header">
+          <div class="header-title-group">
+            <img
+              class="logo-oda"
+              src="assets/img/logo_ODA_telas_desktop.png"
+              alt="Logo ODA, Simulador: Equipamentos para monitoramento de riscos ambientais"
+            />
+          </div>
+          <!-- Colored Logo -->
+          <img
+            src="assets/img/logo_senac-desk.png"
+            alt="Senac Logo"
+            class="senac-logo"
+          />
+        </header>
+        <div class="grid-content-container">
+          <!-- Rendered dynamically via js/modules/categories.js -->
+          <div class="categories-grid"></div>
+        </div>
+        <div class="page-footer-actions">
+          <button class="btn btn-page-back">
+            <svg
+              width="15"
+              height="26"
+              viewBox="0 0 15 26"
+              style="transform: scale(-1)"
+              fill="currentColor"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M14.4508 11.6888C15.1831 12.414 15.1831 13.5918 14.4508 14.317L3.20299 25.4561C2.47071 26.1813 1.28149 26.1813 0.549209 25.4561C-0.18307 24.7309 -0.18307 23.5532 0.549209 22.828L10.4731 13L0.555067 3.17204C-0.177212 2.44684 -0.177212 1.26911 0.555067 0.543903C1.28735 -0.181301 2.47657 -0.181301 3.20885 0.543903L14.4566 11.683L14.4508 11.6888Z"
+                fill="currentColor"
+              />
+            </svg>
+            Voltar
+          </button>
+        </div>
+      </section>
+
+      <!-- PAGE 4: Carrossel de Equipamentos -->
+      <section class="page page-4">
+        <header class="simulator-header">
+          <div class="header-title-group">
+            <img
+              class="logo-oda"
+              src="assets/img/logo_ODA_telas_desktop.png"
+              alt="Logo ODA, Simulador: Equipamentos para monitoramento de riscos ambientais"
+            />
+          </div>
+          <!-- Colored Logo -->
+          <img
+            src="assets/img/logo_senac-desk.png"
+            alt="Senac Logo"
+            class="senac-logo"
+          />
+        </header>
+        <div class="carousel-content-container">
+          <h4 class="carousel-category-title">Categoria</h4>
+          <!-- Rendered dynamically via js/modules/carousel.js -->
+          <div class="carousel-display-area"></div>
+        </div>
+        <div class="page-footer-actions">
+          <button class="btn btn-page-back">
+            <svg
+              width="15"
+              height="26"
+              viewBox="0 0 15 26"
+              style="transform: scale(-1)"
+              fill="currentColor"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M14.4508 11.6888C15.1831 12.414 15.1831 13.5918 14.4508 14.317L3.20299 25.4561C2.47071 26.1813 1.28149 26.1813 0.549209 25.4561C-0.18307 24.7309 -0.18307 23.5532 0.549209 22.828L10.4731 13L0.555067 3.17204C-0.177212 2.44684 -0.177212 1.26911 0.555067 0.543903C1.28735 -0.181301 2.47657 -0.181301 3.20885 0.543903L14.4566 11.683L14.4508 11.6888Z"
+                fill="currentColor"
+              />
+            </svg>
+            Voltar
+          </button>
+        </div>
+      </section>
+
+      <!-- PAGE 5: Detalhes do Equipamento e Situações -->
+      <section class="page page-5">
+        <!-- Left and Right Columns populated via js/modules/detail.js -->
+        <header class="simulator-header">
+          <div class="header-title-group">
+            <img
+              class="logo-oda"
+              src="assets/img/logo_ODA_telas_desktop.png"
+              alt="Logo ODA, Simulador: Equipamentos para monitoramento de riscos ambientais"
+            />
+          </div>
+          <!-- Colored Logo -->
+          <img
+            src="assets/img/logo_senac-desk.png"
+            alt="Senac Logo"
+            class="senac-logo"
+          />
+        </header>
+        <div class="detail-content-container">
+          <div class="detail-left-col"></div>
+          <div class="detail-right-col"></div>
+        </div>
+      </section>
+
+      <!-- Modal 3D Viewer -->
+      <div id="modal-3d" class="modal-3d" aria-hidden="true">
+        <div class="modal-3d-overlay"></div>
+        <div class="modal-3d-container">
+          <div class="modal-3d-header">
+            <h3 class="modal-3d-title">Visualizador 3D</h3>
+            <button class="modal-3d-close" aria-label="Fechar modal">
+              &times;
+            </button>
+          </div>
+          <div class="modal-3d-body">
+            <div class="modal-3d-canvas-wrapper" id="canvas-3d-container">
+              <!-- 3D Canvas / Placeholder will be inserted here -->
+            </div>
+          </div>
+          <!-- Equipments Carousel below 3D Player -->
+          <div id="modal-3d-carousel-section" class="modal-3d-carousel-section" style="display: none;">
+            <div class="modal-3d-carousel-header">
+              <span class="modal-3d-carousel-subtitle">Outros equipamentos desta categoria</span>
+            </div>
+            <div class="modal-3d-carousel-wrapper">
+              <button class="btn-modal-carousel btn-modal-carousel-prev" aria-label="Equipamento anterior">
+                <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M15 18l-6-6 6-6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+              <div class="modal-3d-carousel-track">
+                <!-- Dynamically populated via detail.js -->
+              </div>
+              <button class="btn-modal-carousel btn-modal-carousel-next" aria-label="Próximo equipamento">
+                <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M9 18l6-6-6-6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="modal-3d-footer">
+            <span class="modal-3d-instruction"
+              >Área reservada para o visualizador 3D interativo</span
+            >
+            <button class="btn btn-primary btn-modal-close">Fechar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Entry Script (ES Modules) -->
+
+    <script type="module" src="assets/js/main.js"></script>
+  </body>
+</html>

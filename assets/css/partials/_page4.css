@@ -1,0 +1,165 @@
+/**
+ * Page 4: Carrossel de Equipamentos (Equipment Carousel Screen)
+ */
+
+.page-4 {
+  height: 100%;
+}
+
+.carousel-content-container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel-category-title {
+  font-size: 25px;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  transition: opacity 0.3s ease;
+}
+
+/* Widescreen Carousel structure */
+.carousel-display-area {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 750px;
+  gap: 2rem;
+  position: relative;
+}
+
+/* Large double chevron button styles */
+.btn-carousel {
+  background: none;
+  border: none;
+  color: var(--color-primary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  transition:
+    opacity 0.3s ease,
+    transform var(--transition-fast),
+    color var(--transition-fast),
+    background-color var(--transition-fast);
+}
+
+.btn-carousel:hover {
+  color: var(--color-primary-hover);
+  background-color: var(--color-primary-light);
+  transform: scale(1.1);
+}
+
+.btn-carousel svg {
+  width: 44px;
+  height: 44px;
+}
+
+/* Equipment card in carousel */
+.carousel-card {
+  flex-grow: 1;
+  max-width: 450px;
+  background-color: var(--color-white);
+  border-radius: 16px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition:
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.carousel-card:hover {
+  transform: scale(1.02);
+}
+
+.carousel-card-image-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 36px;
+}
+
+.equip-svg {
+  height: auto;
+  width: 540px;
+}
+
+/* Renders (PNG/WebP): mesma caixa quadrada do SVG, sem distorcer */
+.equip-img {
+  width: 540px;
+  height: 540px;
+  max-width: none;
+  object-fit: contain;
+}
+
+.carousel-card-title {
+  color: var(--color-text-dark);
+  font-size: 30px;
+  font-weight: 700;
+  margin: 0;
+  text-align: center;
+  text-transform: uppercase;
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
+}
+
+/* Guard style when no items are present */
+.no-equipments {
+  color: var(--color-text-muted);
+  font-size: 25px;
+  font-weight: 500;
+  text-align: center;
+}
+
+/* --- Transitioning state to Page 5 --- */
+.page-4.is-transitioning .btn-carousel {
+  opacity: 0;
+  transform: scale(0.6);
+  pointer-events: none;
+}
+
+.page-4.is-transitioning .carousel-category-title,
+.page-4.is-transitioning .page-footer-actions {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.page-4.is-transitioning .carousel-card-title {
+  opacity: 0;
+  transform: translateY(15px);
+}
+
+.page-4.is-transitioning .carousel-card {
+  cursor: default;
+}
+
+/* Fantasmas da transição página 4 → 5 (criados em carousel.js) */
+.transition-ghost {
+  position: absolute;
+  z-index: 105; /* acima das páginas, abaixo do botão de tela cheia */
+  pointer-events: none;
+  margin: 0;
+}
+
+.transition-ghost-box {
+  border: 2px solid transparent;
+  box-shadow: var(--shadow-sm);
+}
+
+.transition-ghost-media {
+  max-width: none;
+  object-fit: contain;
+}

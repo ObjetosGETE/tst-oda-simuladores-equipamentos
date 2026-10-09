@@ -1,0 +1,39 @@
+/* ==========================================================
+   Variáveis globais (cores, fontes, medidas)
+   ========================================================== */
+:root {
+  --laranja: #f58220;
+  --laranja-escuro: #d9690c;
+  --laranja-claro: #fde6d2;
+  --creme: #fdfaf6;
+  --branco: #ffffff;
+  --texto: #1c1c1c;
+  --cinza-borda: #5b6770;
+  --cinza-claro: #e6e6e6;
+  --azul-info: #dde9fb;
+  --azul-borda: #2c6ed5;
+  --verde: #2fa84f;
+  --vermelho-aviso: #e5461d;
+
+  --fonte: "Roboto", Arial, sans-serif;
+  --fonte-titulo: "Lexend", "Roboto", Arial, sans-serif;
+  --fonte-lcd-bomba: "DSDigi", monospace;
+  --fonte-lcd-calibrador: "PixelOperator", monospace;
+
+  --raio: 10px;
+  --sombra: 0 3px 8px rgba(0, 0, 0, 0.25);
+
+  /* palco fixo 1920x1080, escalado via JS (--escala) */
+  --palco-l: 1920px;
+  --palco-a: 1080px;
+  --escala: 1;
+}
+
+@font-face {
+  font-family: "DSDigi";
+  src: url("../../img/Manual%20-%20Bomba%20de%20amostragem%20de%20ar/DS-DIGII.TTF") format("truetype");
+}
+@font-face {
+  font-family: "PixelOperator";
+  src: url("../../img/Manual%20-%20Calibrador-aferidor%20de%20vazao/PixelOperator.ttf") format("truetype");
+}

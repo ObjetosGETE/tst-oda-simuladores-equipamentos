@@ -1,0 +1,48 @@
+/**
+ * Page 1: Capa (Cover Screen)
+ */
+
+.page-1 {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100%;
+}
+
+/* Absolute top right logo for Cover */
+.page-1 .logo-container {
+  position: absolute;
+  top: 60px;
+  right: 60px;
+}
+
+.page-1 .logo-container .senac-logo {
+  height: 80px;
+}
+
+/* Center Content */
+.cover-content {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  align-items: center;
+}
+
+/* Big Start Button */
+.btn-start {
+  padding: 25px 27px;
+  border-radius: 8px;
+  font-size: 35px;
+  min-width: 190px;
+  min-height: 70px;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  box-shadow: 0 6px 15px rgba(243, 112, 33, 0.3);
+  font-weight: bold;
+}
+
+.btn-start:hover {
+  background-color: var(--color-primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(243, 112, 33, 0.4);
+}

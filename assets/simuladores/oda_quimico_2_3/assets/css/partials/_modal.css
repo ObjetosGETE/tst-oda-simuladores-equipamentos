@@ -1,0 +1,130 @@
+/* ==========================================================
+   Modal
+   ========================================================== */
+.modal-fundo {
+  position: absolute;
+  inset: 0;
+  background: rgba(245, 130, 32, 0.82);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 45;
+  animation: aparecer 0.2s ease-out;
+}
+
+.modal {
+  position: relative;
+  width: 1320px;
+  max-height: 900px;
+  display: flex;
+  flex-direction: column;
+  padding: 60px 80px 50px;
+  background: var(--branco);
+  border: 3px solid var(--cinza-borda);
+  border-radius: 14px;
+  box-shadow: var(--sombra);
+}
+
+.modal--pequeno {
+  width: 1000px;
+}
+
+.modal__fechar {
+  position: absolute;
+  right: 40px;
+  top: -52px;
+  width: 140px;
+  height: 52px;
+  border: 0;
+  clip-path: polygon(20% 0, 80% 0, 100% 100%, 0 100%);
+  background: var(--cinza-borda);
+}
+
+.modal__fechar::after {
+  content: "\2715";
+  color: #fff;
+  font-size: 34px;
+}
+
+.modal__titulo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 0 0 24px;
+  font-size: 42px;
+  font-weight: 700;
+}
+
+.modal__titulo img {
+  width: 44px;
+}
+
+.modal__corpo {
+  overflow-y: auto;
+  padding-right: 30px;
+  font-size: 30px;
+  line-height: 1.35;
+}
+
+.modal__corpo p {
+  margin: 0 0 22px;
+}
+
+.modal__corpo ul,
+.modal__corpo ol {
+  margin: 0;
+  padding-left: 40px;
+}
+
+.modal__corpo li {
+  margin-bottom: 16px;
+}
+
+.modal__corpo::-webkit-scrollbar {
+  width: 14px;
+}
+
+.modal__corpo::-webkit-scrollbar-thumb {
+  background: var(--cinza-borda);
+  border-radius: 7px;
+}
+
+.modal__rodape {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ----- fórmula (frações) usada no "Mais detalhes" ----- */
+.formula {
+  margin: 0 0 22px;
+  padding-left: 30px;
+  font-size: 28px;
+  line-height: 2.4;
+}
+
+.formula > div {
+  white-space: nowrap;
+}
+
+.frac {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  vertical-align: middle;
+  line-height: 1.25;
+}
+
+.frac > span:first-child {
+  padding: 0 6px;
+  border-bottom: 2px solid currentColor;
+}

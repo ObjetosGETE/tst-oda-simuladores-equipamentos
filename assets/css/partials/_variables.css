@@ -1,0 +1,37 @@
+/**
+ * Design Tokens & Variables
+ */
+
+:root {
+  /* Colors */
+  --color-primary: #f37021; /* Senac Orange */
+  --color-primary-hover: #e05f10;
+  --color-primary-light: #fdf1e9;
+
+  --color-blue: #005aa5; /* Senac Blue */
+  --color-dark: #2c3e50; /* Deep gray-blue */
+  --color-text-dark: #111111; /* Dark gray/black for readability */
+  --color-text-muted: #555555; /* Muted gray for captions */
+  --color-light: #f5f6fa; /* Warm background light color */
+  --color-border: #dcdde1; /* Light border gray */
+  --color-border-orange: #f37021;
+  --color-white: #ffffff;
+
+  /* Layout Dimensions */
+  --viewport-max-width: 1200px;
+  --viewport-aspect-ratio: 16 / 9;
+
+  /* Typography */
+  --font-family:
+    Roboto, -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+  --font-size-base: 25px;
+
+  /* Shadows */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 10px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
+
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+}

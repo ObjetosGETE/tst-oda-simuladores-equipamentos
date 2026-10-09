@@ -1,0 +1,106 @@
+/* ==========================================================
+   Palco 16:9 (1920x1080) centralizado e escalado
+   ========================================================== */
+.palco-wrap {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.palco {
+  position: relative;
+  width: var(--palco-l);
+  height: var(--palco-a);
+  flex: none;
+  transform: scale(var(--escala));
+  transform-origin: center center;
+  overflow: hidden;
+  background: #000;
+}
+
+/* moldura laranja com cantos chanfrados */
+.palco::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 12px solid var(--laranja);
+  border-radius: 40px;
+  box-shadow: 0 0 0 40px var(--laranja);
+  pointer-events: none;
+  z-index: 50;
+}
+
+/* ----- cena (imagem de fundo) ----- */
+.cena {
+  position: absolute;
+  inset: 0;
+}
+
+.cena__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cena__img {
+  position: relative;
+}
+
+/* render desfocado atrás dos close-ups transparentes */
+.cena__fundo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(14px) brightness(0.55);
+  transform: scale(1.08);
+}
+
+.cena__frente {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.cena--zoom .cena__img,
+.cena--zoom .cena__frente {
+  transform: scale(1.45);
+  transform-origin: 50% 0;
+}
+
+.cena__placeholder {
+  position: absolute;
+  left: 36%;
+  top: 12%;
+  width: 22%;
+  height: 84%;
+  border: 4px dashed rgba(255, 255, 255, 0.9);
+  border-radius: 120px 120px 20px 20px;
+  background: rgba(245, 130, 32, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  font-size: 30px;
+  font-weight: 700;
+  white-space: pre-line;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+  padding: 20px;
+}
+
+.camada {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.camada > * {
+  pointer-events: auto;
+}

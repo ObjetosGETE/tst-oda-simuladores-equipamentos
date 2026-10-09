@@ -1,0 +1,34 @@
+/* ==========================================================
+   Base / reset
+   ========================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  background: #1b1b1b;
+  font-family: var(--fonte);
+  color: var(--texto);
+  overflow: hidden;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+.oculto {
+  display: none !important;
+}

@@ -1,0 +1,115 @@
+/* ==========================================================
+   Botões
+   ========================================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-width: 190px;
+  height: 64px;
+  padding: 0 28px;
+  border: 3px solid var(--laranja-escuro);
+  border-radius: var(--raio);
+  background: var(--laranja);
+  color: #fff;
+  font-size: 30px;
+  font-weight: 500;
+  box-shadow: var(--sombra);
+  transition: transform 0.1s, filter 0.15s;
+}
+
+.btn:hover {
+  filter: brightness(1.08);
+}
+
+.btn:active {
+  transform: translateY(2px);
+}
+
+.btn[disabled] {
+  opacity: 0.45;
+  cursor: default;
+  filter: grayscale(0.4);
+}
+
+.btn__icone {
+  width: 26px;
+  height: 26px;
+}
+
+.btn--grande {
+  width: 400px;
+  height: 200px;
+  font-size: 40px;
+  line-height: 1.2;
+}
+
+.btn--rotina {
+  width: 620px;
+  height: 70px;
+  font-size: 30px;
+}
+
+/* botão de imagem (usa os PNGs exportados do layout) */
+.btn-img {
+  padding: 0;
+  border: 0;
+  background: none;
+  transition: transform 0.1s, filter 0.15s;
+}
+
+.btn-img:hover {
+  filter: brightness(1.08);
+}
+
+.btn-img:active {
+  transform: translateY(2px);
+}
+
+/* posições fixas */
+.btn--avancar {
+  position: absolute;
+  right: 60px;
+  bottom: 60px;
+  z-index: 20;
+  animation: surgir 0.3s ease-out;
+}
+
+.btn--voltar-canto {
+  position: absolute;
+  right: 60px;
+  bottom: 60px;
+  z-index: 20;
+}
+
+.menu-lateral {
+  position: absolute;
+  left: 60px;
+  top: 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  z-index: 30;
+}
+
+.menu-lateral .btn-img img {
+  width: 330px;
+}
+
+.menu-lateral .btn-img.destaque {
+  outline: 6px solid #fff;
+  outline-offset: 4px;
+  border-radius: 12px;
+}
+
+@keyframes surgir {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}

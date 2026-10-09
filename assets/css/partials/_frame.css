@@ -1,0 +1,241 @@
+/**
+ * Simulator Bezel Frame, Headers, Footers, and Shared Components
+ */
+
+/* 16:9 Viewport Container */
+.simulator-viewport {
+  position: absolute;
+  width: 1920px;
+  height: 1080px;
+  background-color: var(--color-white);
+  border-radius: 16px;
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+/* Fullscreen Button */
+.btn-fullscreen {
+  position: absolute;
+  bottom: 60px;
+  right: 60px;
+  width: 66px;
+  height: 66px;
+  border-radius: 8px;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 110;
+  box-shadow: var(--shadow-sm);
+  transition:
+    transform var(--transition-fast),
+    background-color var(--transition-fast);
+}
+
+.btn-fullscreen:hover {
+  background-color: var(--color-primary-hover);
+  transform: scale(1.05);
+}
+
+/* Page Containers */
+.page {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: none;
+  flex-direction: column;
+  padding: 60px;
+  overflow: hidden;
+  background-image: url("../../img/bg-capa.jpg");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  animation: fadeOut 0.5s ease-in-out forwards;
+}
+
+.page.active {
+  display: flex;
+  animation: fadeIn 0.5s ease-in-out forwards;
+}
+
+/* Shared Header for light pages */
+.simulator-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  flex-shrink: 0;
+}
+.logo-oda {
+  width: 500px;
+  height: auto;
+}
+
+.header-title-group {
+  width: calc(25% + 60px);
+}
+
+.header-title-group h1 {
+  color: var(--color-primary);
+  font-size: 68px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 800;
+}
+
+.header-title-group p {
+  color: var(--color-text-dark);
+  font-size: 30px;
+  font-weight: 500;
+}
+
+/* Senac Logo SVGs */
+.senac-logo {
+  height: 80px;
+  width: auto;
+}
+
+/* Page action footers (Voltar button) */
+.page-footer-actions {
+  margin-top: auto;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-shrink: 0;
+  padding-top: 1rem;
+  position: absolute;
+  bottom: 60px;
+}
+
+/* Shared Button Styles */
+.btn {
+  padding: 25px 27px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 28px;
+  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  gap: 12px;
+  @media (max-width: 991px) {
+    font-size: 38px;
+  }
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  box-shadow: 0 4px 6px rgba(243, 112, 33, 0.2);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-hover);
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  background-color: var(--color-white);
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+}
+
+.btn-outline:hover {
+  background-color: var(--color-primary-light);
+  transform: translateY(-1px);
+}
+
+/* Custom Toast Alerts */
+.simulator-toast {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translate(-50%, -100px);
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  color: var(--color-white);
+  font-weight: 600;
+  font-size: 25px;
+  box-shadow: var(--shadow-lg);
+  z-index: 1000;
+  opacity: 0;
+  transition:
+    transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+    opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.simulator-toast.visible {
+  transform: translate(-50%, 0);
+  opacity: 1;
+}
+
+.toast-info {
+  background-color: var(--color-dark);
+}
+
+.toast-success {
+  background-color: #27ae60;
+  border-left: 5px solid #2ecc71;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.99);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.99);
+  }
+}
+
+.tela-landscape {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--color-primary);
+  z-index: 9999;
+  display: none;
+  flex-direction: column;
+  color: white;
+  justify-content: center;
+  align-items: center;
+
+  @media only screen and (orientation: portrait) and (max-width: 900px) {
+    display: flex;
+  }
+  img {
+    height: 250px;
+    margin-bottom: 40px;
+  }
+  p {
+    max-width: 450px;
+    text-align: center;
+  }
+}
+
+/* Entrada sem fade (usada na transição carrossel → detalhe) */
+.page.active.no-page-fade {
+  animation: none;
+}
