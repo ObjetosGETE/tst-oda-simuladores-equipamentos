@@ -1,5 +1,6 @@
 import { el } from '../utils/dom.js';
 import { Lcd } from './Lcd.js';
+import { tocarBomba, pararBomba, ehDonoBomba } from '../utils/somBomba.js';
 
 /**
  * Calibrador/aferidor de vazão interativo (close-up renders/telas_equi/Aferidor.png).
@@ -76,7 +77,25 @@ export function Calibrador(camada, config, onConcluir) {
     }),
   );
   camada.append(...botoes);
+
+  // Som da bomba (utils/somBomba.js): toca enquanto mede (ÚNICA ou SEQUENCIAL)
+  // e repete enquanto a medição continuar com o aparelho na tela.
+  const som = { continuar: () => medindoAgora() && botoes[0].isConnected };
+
   desenhar();
+
+  /* ---------- som ---------- */
+  function medindoAgora() {
+    return !!(estado.ligado && estado.tela === 'medicao' && estado.medindo && !estado.pausado);
+  }
+
+  function atualizarSom() {
+    if (medindoAgora()) {
+      if (!ehDonoBomba(som)) tocarBomba(som);
+    } else {
+      pararBomba(som);
+    }
+  }
 
   /* ---------- regras do aparelho ---------- */
   function opcoes(e = estado) {
@@ -179,5 +198,6 @@ export function Calibrador(camada, config, onConcluir) {
       : el('div', { class: 'lcd lcd--vazio' });
     lcd ? lcd.replaceWith(novo) : camada.append(novo);
     lcd = novo;
+    atualizarSom();
   }
 }

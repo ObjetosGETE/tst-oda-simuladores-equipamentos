@@ -12,6 +12,7 @@ export const intros = [
  * Situações da categoria Químico — as mesmas para todos os equipamentos.
  * Cada uma abre, na própria página, o simulador da pasta
  * assets/simuladores/<simulador>/index.html
+ * "quiz" aponta para o quiz da situação em quizzes.js (o mesmo para todas).
  */
 const SITUACOES_QUIMICO = [
   {
@@ -19,42 +20,49 @@ const SITUACOES_QUIMICO = [
     title: "Pico de exposição – LT‑MPT/TLV‑TWA",
     subTitle: "Gás ou vapor",
     simulador: "oda_quimico_1",
+    quiz: "quimicos",
   },
   {
     number: "2",
     title: "Exposição – LT‑MPT/TLV‑TWA",
     subTitle: "Gás ou vapor",
     simulador: "oda_quimico_2",
+    quiz: "quimicos",
   },
   {
     number: "2.1",
     title: "Exposição – LT‑MPT/TLV‑TWA",
     subTitle: "Particulado sem fração",
     simulador: "oda_quimico_2_1",
+    quiz: "quimicos",
   },
   {
     number: "2.2",
     title: "Exposição – LT‑MPT/TLV‑TWA",
     subTitle: "Particulado – fração respirável",
     simulador: "oda_quimico_2_2",
+    quiz: "quimicos",
   },
   {
     number: "2.3",
     title: "Exposição – LT‑MPT/TLV‑TWA",
     subTitle: "Particulado – fração inalável",
     simulador: "oda_quimico_2_3",
+    quiz: "quimicos",
   },
   {
     number: "4",
     title: "Exposição – TLV‑STEL",
     subTitle: "Gás ou vapor",
     simulador: "oda_quimico_4",
+    quiz: "quimicos",
   },
   {
     number: "5",
     title: "Exposição – LT‑VT/TLV‑C",
     subTitle: "Gás ou vapor",
     simulador: "oda_quimico_5",
+    quiz: "quimicos",
   },
 ];
 
@@ -245,12 +253,14 @@ export const categories = [
             title: "Mãos e Braços (VMB)",
             subTitle: "Operação de roçadeira",
             simulador: "oda_vibracoes_1",
+            quiz: "vmb",
           },
           {
             number: 2,
             title: "Corpo Inteiro (VCI)",
             subTitle: "Operação de pá carregadeira",
             simulador: "oda_vibracoes_2",
+            quiz: "vci",
           },
         ],
       },

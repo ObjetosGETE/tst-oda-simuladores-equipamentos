@@ -14,12 +14,14 @@ import { initCarousel, renderCarousel } from "./modules/carousel.js";
 import { initDetail, renderDetail } from "./modules/detail.js";
 import { toggleFullscreen, showToast } from "./modules/ui.js";
 import { markCompleted } from "./modules/progress.js";
+import { initClickSound } from "./modules/sound.js";
 
 const init = () => {
   const pages = {};
   for (let i = 1; i <= 5; i++) pages[i] = document.querySelector(`.page-${i}`);
 
   watchResize(".simulator-viewport");
+  initClickSound();
 
   // Eventos fixos (uma única vez)
   document

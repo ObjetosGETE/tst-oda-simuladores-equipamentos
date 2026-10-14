@@ -1,5 +1,6 @@
 import { Lcd } from './Lcd.js';
 import { Mensagem } from './Caixas.js';
+import { tocarBomba, pararBomba } from '../utils/somBomba.js';
 
 /**
  * Sequência automática de leituras no visor do calibrador (1 de 10 ... 10 de 10).
@@ -9,11 +10,15 @@ import { Mensagem } from './Caixas.js';
  *   intervalo: 1500,                        // ms entre leituras
  *   msgFinal: 'Essa é a vazão média da bomba!'
  * }
+ *
+ * Durante as leituras toca o som da bomba (utils/somBomba.js), que para
+ * ao terminar a última leitura ou se o quadro sair da tela.
  */
 export function Leituras(camada, config, onConcluir) {
   const total = config.leituras.length;
   let i = 0;
   let lcd = null;
+  const som = { continuar: () => i < total && !!lcd?.isConnected };
 
   function mostrar() {
     const [vazao, media] = config.leituras[i];
@@ -31,10 +36,12 @@ export function Leituras(camada, config, onConcluir) {
     if (i < total) {
       setTimeout(mostrar, config.intervalo);
     } else {
+      pararBomba(som); // fim da medição sequencial
       camada.append(Mensagem({ texto: config.msgFinal, posicao: 'rodape-esq', sucesso: true }));
       onConcluir();
     }
   }
 
   mostrar();
+  tocarBomba(som);
 }

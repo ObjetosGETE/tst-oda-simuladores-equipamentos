@@ -9,6 +9,9 @@ import { findSituation } from "./router.js";
 import { showToast, equipmentMedia } from "./ui.js";
 import { ICON_BACK, ICON_3D } from "./icons.js";
 import { isCompleted } from "./progress.js";
+import { initQuiz, openQuiz, closeQuiz, hasQuiz } from "./quiz.js";
+
+const ICON_QUIZ = `<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 2.5-3 4.5"/><path d="M12 17.5h.01"/></svg>`;
 
 const ICON_CHECK = `<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>`;
 
@@ -50,13 +53,18 @@ let renderedId = null; // evita re-renderizar o mesmo equipamento
  */
 export const initDetail = (container) => {
   initModal3d({ onSelect: selectEquipment });
+  initQuiz();
 
   container.querySelector(".detail-left-col")?.addEventListener("click", (e) => {
     if (e.target.closest(".btn-page-back")) {
       closeModal();
+      closeQuiz();
       setState({ currentPage: 4, activeSituation: null });
     } else if (e.target.closest(".btn-3d-toggle")) {
       openModal(getState());
+    } else if (e.target.closest(".btn-quiz-toggle")) {
+      const { selectedEquipment, selectedCategory } = getState();
+      openQuiz(selectedEquipment, selectedCategory);
     }
   });
 
@@ -107,6 +115,11 @@ export const renderDetail = (container, state) => {
       ${
         equipment.model
           ? `<button class="btn btn-outline btn-3d-toggle">${ICON_3D}<span>Visualizar em 3D</span></button>`
+          : ""
+      }
+      ${
+        hasQuiz(equipment)
+          ? `<button class="btn btn-outline btn-quiz-toggle">${ICON_QUIZ}<span>Teste seu conhecimento</span></button>`
           : ""
       }
       <div class="detail-back-container">

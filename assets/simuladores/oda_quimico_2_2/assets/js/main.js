@@ -5,6 +5,7 @@
  * Para criar outra situação: duplique data/situacao2_2.js, altere o conteúdo
  * e troque o import abaixo.
  */
+import './utils/som.js'; // som de clique nos botões
 import { Simulador } from './core/Simulador.js';
 import { preCarregarTudo } from './components/Preloader.js';
 import situacao from './data/situacao2_2.js';

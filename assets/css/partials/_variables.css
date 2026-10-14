@@ -18,6 +18,8 @@
   --color-white: #ffffff;
   --color-success: #27ae60; /* Simulação concluída */
   --color-success-light: #e3f6ea;
+  --color-error: #d63031; /* Resposta incorreta (quiz) */
+  --color-error-light: #fdecec;
 
   /* Layout Dimensions */
   --viewport-max-width: 1200px;
