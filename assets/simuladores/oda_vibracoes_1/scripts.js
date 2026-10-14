@@ -408,7 +408,10 @@ function loadUnity() {
 function AbrirGuardaChuva() {
   // Dentro do ODA (iframe): avisa a página principal, que fecha o simulador
   // e volta para a página do equipamento.
-
+  if (window.parent !== window) {
+    window.parent.postMessage({ tipo: "simulacao-concluida" }, "*");
+    return;
+  }
   // Aberto sozinho: comportamento original
   window.open(urlGuardaChuva, "_blank").focus();
 }

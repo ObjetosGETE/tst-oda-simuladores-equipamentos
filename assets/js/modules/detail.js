@@ -8,6 +8,32 @@ import { getState, setState, selectEquipment } from "./state.js";
 import { findSituation } from "./router.js";
 import { showToast, equipmentMedia } from "./ui.js";
 import { ICON_BACK, ICON_3D } from "./icons.js";
+import { isCompleted } from "./progress.js";
+
+const ICON_CHECK = `<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>`;
+
+/**
+ * Marca (borda verde + check no canto superior esquerdo) as situações cujo
+ * simulador já foi concluído. Roda a cada renderização da página 5.
+ */
+const applyCompletion = (container, equipment) => {
+  container.querySelectorAll(".situation-card").forEach((card) => {
+    const sit = findSituation(equipment, card.dataset.number);
+    const done = isCompleted(sit?.simulador);
+    card.classList.toggle("situation-card--done", done);
+
+    let check = card.querySelector(".situation-check");
+    if (done && !check) {
+      check = document.createElement("span");
+      check.className = "situation-check";
+      check.title = "Simulação concluída";
+      check.innerHTML = `${ICON_CHECK}<span class="sr-only">Concluída</span>`;
+      card.prepend(check);
+    } else if (!done && check) {
+      check.remove();
+    }
+  });
+};
 import {
   initModal3d,
   openModal,
@@ -64,7 +90,10 @@ export const renderDetail = (container, state) => {
   // Modal aberto acompanha a troca de equipamento (carrossel do modal)
   if (isModalOpen()) updateModal(state);
 
-  if (equipment.id === renderedId) return;
+  if (equipment.id === renderedId) {
+    applyCompletion(container, equipment); // ex.: acabou de concluir um simulador
+    return;
+  }
   renderedId = equipment.id;
 
   const leftCol = container.querySelector(".detail-left-col");
@@ -116,4 +145,6 @@ export const renderDetail = (container, state) => {
       </div>
     `;
   }
+
+  applyCompletion(container, equipment);
 };

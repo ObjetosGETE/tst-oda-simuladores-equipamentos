@@ -129,7 +129,15 @@ export class Simulador {
 
     for (const t of fim) await telas[t.tipo](t);
 
-    // reinicia ao terminar
+    // Dentro do ODA (iframe): avisa a página principal que a simulação foi
+    // concluída. O ODA salva o progresso, fecha o simulador e volta para a
+    // página do equipamento.
+    if (window.parent !== window) {
+      window.parent.postMessage({ tipo: 'simulacao-concluida' }, '*');
+      return;
+    }
+
+    // Aberto sozinho: reinicia ao terminar (comportamento original)
     location.search ? (location.search = '') : this.iniciar();
   }
 }

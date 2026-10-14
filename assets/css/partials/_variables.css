@@ -16,6 +16,8 @@
   --color-border: #dcdde1; /* Light border gray */
   --color-border-orange: #f37021;
   --color-white: #ffffff;
+  --color-success: #27ae60; /* Simulação concluída */
+  --color-success-light: #e3f6ea;
 
   /* Layout Dimensions */
   --viewport-max-width: 1200px;

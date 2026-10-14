@@ -666,3 +666,79 @@
   background: var(--color-white);
   color: var(--color-primary);
 }
+
+/* --- Situação concluída (progresso salvo em progress.js / localStorage) --- */
+.situation-card {
+  position: relative; /* referência para o check no canto */
+}
+
+.situation-card--done,
+.situation-card--done:hover {
+  border-color: var(--color-success);
+  box-shadow:
+    inset 0 0 0 2px var(--color-success), /* borda mais grossa sem mudar o tamanho */
+    var(--shadow-sm);
+}
+
+.situation-card--done:hover {
+  background-color: var(--color-success-light);
+  box-shadow:
+    inset 0 0 0 2px var(--color-success),
+    var(--shadow-md);
+}
+
+.situation-card--done .situation-badge {
+  background-color: var(--color-success-light);
+  color: var(--color-success);
+}
+
+.situation-card--done:hover .situation-badge {
+  background-color: var(--color-success);
+  color: var(--color-white);
+}
+
+.situation-check {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--color-success);
+  color: var(--color-white);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 6px rgba(39, 174, 96, 0.35);
+  animation: checkPop 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+}
+
+.situations-container--many .situation-check {
+  top: 8px;
+  left: 8px;
+  width: 34px;
+  height: 34px;
+}
+
+.situations-container--many .situation-check svg {
+  width: 22px;
+  height: 22px;
+}
+
+@keyframes checkPop {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}

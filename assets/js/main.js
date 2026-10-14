@@ -13,6 +13,7 @@ import { initCategories } from "./modules/categories.js";
 import { initCarousel, renderCarousel } from "./modules/carousel.js";
 import { initDetail, renderDetail } from "./modules/detail.js";
 import { toggleFullscreen, showToast } from "./modules/ui.js";
+import { markCompleted } from "./modules/progress.js";
 
 const init = () => {
   const pages = {};
@@ -34,7 +35,9 @@ const init = () => {
     onClose: () => setState({ activeSituation: null }),
     // fim da simulação: fecha e volta para a página do equipamento
     onFinish: () => {
-      setState({ activeSituation: null });
+      const { selectedEquipment, activeSituation } = getState();
+      markCompleted(findSituation(selectedEquipment, activeSituation)?.simulador);
+      setState({ activeSituation: null }); // re-renderiza a página 5 já com o "concluído"
       showToast("Simulação concluída!", "success");
     },
   });
