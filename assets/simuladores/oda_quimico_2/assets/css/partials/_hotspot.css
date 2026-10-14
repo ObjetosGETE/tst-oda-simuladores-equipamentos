@@ -143,3 +143,30 @@
 .compacto .hotspot__dica {
   font-size: 40px;
 }
+
+/* ----- botões do calibrador (components/Calibrador.js) -----
+   áreas clicáveis invisíveis sobre os botões do aparelho (sem bolinha) */
+.calib-btn {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  z-index: 12;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* leve brilho enquanto o botão está sendo pressionado */
+.calib-btn:active:not(:disabled) {
+  background: radial-gradient(closest-side, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0));
+}
+
+.calib-btn:focus-visible {
+  outline: 4px solid var(--laranja);
+}
+
+.calib-btn:disabled {
+  cursor: default;
+}

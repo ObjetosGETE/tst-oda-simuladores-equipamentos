@@ -40,6 +40,7 @@ assets/
     components/              peças reutilizáveis
       Botao.js  Caixas.js  Modal.js  Hotspot.js  Cena.js
       Lcd.js  Painel.js  Manual.js  Ajuste.js  Leituras.js  Espera.js  Mobile.js  Preloader.js
+      Calibrador.js
     utils/
       dom.js  caminhos.js    (PASTA_RENDERS = 'renders')
   img/renders/               01 … 45 (+ 01_1 e 02_1; sem 26–28)
@@ -101,3 +102,25 @@ Antes do simulador abrir, `components/Preloader.js` mostra uma tela de carregame
 
 A lista é montada automaticamente: ao trocar imagens ou criar outra situação, não precisa mexer
 no preloader. Se aparecer uma fonte nova, adicione em `FONTES` no `Preloader.js`.
+
+## Calibrador interativo (`tipo: "calibrador"`)
+
+Nas telas do calibrador não há bolinhas: todos os botões do aparelho funcionam
+(⏻ liga/desliga, ◀ ▶ ▲ ▼ mudam a opção, ENTER confirma), seguindo
+`assets/img/Manual - Calibrador-aferidor de vazao/relacao_telas.jpg`.
+Os menus sem conteúdo (CONFIGURAÇÃO, CONT., CONFIG.) mostram
+"Esse menu não será contemplado nesse simulador" (`MSG_NAO_CONTEMPLADO` em `components/Calibrador.js`).
+
+O quadro termina quando o aparelho chega no `objetivo`:
+
+```js
+{
+  ...AFERIDOR_CLOSE,
+  tipo: "calibrador",
+  estado: { ligado: true, tela: "medicao", modo: "unica" },   // opcional (padrão: desligado)
+  objetivo: { modo: "unica", medindo: true },                 // iniciou a medição única
+  medicoes: { unica: { vazao: "0,2261", media: "0,2261", contador: "01 de 01" } },
+}
+```
+
+Usado nos passos 8, 9, 11, 14 e 28. A posição das áreas clicáveis fica em `BOTOES` (`components/Calibrador.js`).

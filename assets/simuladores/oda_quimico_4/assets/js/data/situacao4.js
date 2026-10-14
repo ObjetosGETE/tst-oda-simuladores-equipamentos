@@ -43,10 +43,8 @@ const B_ASTER = { x: 50.5, y: 81 };
 const B_BAIXO = { x: 63, y: 81 };
 const B_COMBO = { x: 50.5, y: 70.5, combo: { largura: 25 } }; // ▲ + ▼ juntos
 
-// Calibrador (Aferidor.png)
-const C_ENTER = { x: 63.5, y: 48.5 };
-const C_DIR = { x: 71, y: 48.5 };
-const C_POWER = { x: 73.5, y: 61 };
+// Calibrador (Aferidor.png): os botões ficam em components/Calibrador.js
+// (todos funcionam, sem bolinha). Use quadro.tipo = "calibrador".
 
 // Cena geral com calibrador + bomba (renders 15 / 22 / 47)
 const CENA_CALIBRADOR = { x: 27, y: 31 };
@@ -66,7 +64,6 @@ const PAINEL_AMOSTRADOR = { x: 22.8, y: 79 };
 
 /* ---------- telas do visor ---------- */
 const bomba = (d) => ({ tipo: "bomba", ...d });
-const calib = (d) => ({ tipo: "calibrador", ...d });
 
 const MANUAL = "assets/img/Manual - Bomba de amostragem de ar/";
 const MANUAL_CAL = "assets/img/Manual - Calibrador-aferidor de vazao/MANUAL/";
@@ -279,16 +276,10 @@ export default {
         "Ligue o calibrador/aferidor de vazão, navegue até a função MEDIR e, em seguida, selecione a opção ÚNICA.",
       quadros: [
         { img: "15", hs: CENA_CALIBRADOR },
-        { ...AFERIDOR_CLOSE, hs: C_POWER },
-        { ...AFERIDOR_CLOSE, lcd: calib({ tela: "inicio" }), hs: C_ENTER },
         {
           ...AFERIDOR_CLOSE,
-          lcd: calib({ tela: "menu", sel: "ÚNICA" }),
-          hs: C_ENTER,
-        },
-        {
-          ...AFERIDOR_CLOSE,
-          lcd: calib({ tela: "medicao", opcoes: ["UNICA", "SAIR"] }),
+          tipo: "calibrador", // começa desligado
+          objetivo: { tela: "medicao", modo: "unica", medindo: false },
         },
       ],
     },
@@ -299,17 +290,10 @@ export default {
       quadros: [
         {
           ...AFERIDOR_CLOSE,
-          lcd: calib({ tela: "medicao", opcoes: ["UNICA", "SAIR"] }),
-          hs: C_ENTER,
-        },
-        {
-          ...AFERIDOR_CLOSE,
-          lcd: calib({
-            tela: "medicao",
-            vazao: "0,0782",
-            media: "0,0782",
-            contador: "01 de 01",
-          }),
+          tipo: "calibrador",
+          estado: { ligado: true, tela: "medicao", modo: "unica" },
+          objetivo: { modo: "unica", medindo: true },
+          medicoes: { unica: { vazao: "0,0782", media: "0,0782", contador: "01 de 01" } },
         },
       ],
     },
@@ -343,45 +327,10 @@ export default {
         { img: "15", hs: CENA_CALIBRADOR },
         {
           ...AFERIDOR_CLOSE,
-          lcd: calib({
-            tela: "medicao",
-            vazao: "0,0969",
-            media: "0,0782",
-            contador: "01 de 010",
-            sel: "PAUSA",
-          }),
-          hs: C_DIR,
-        },
-        {
-          ...AFERIDOR_CLOSE,
-          lcd: calib({
-            tela: "medicao",
-            vazao: "0,0969",
-            media: "0,0782",
-            contador: "01 de 010",
-            sel: "SAIR",
-          }),
-          hs: C_ENTER,
-        },
-        {
-          ...AFERIDOR_CLOSE,
-          lcd: calib({ tela: "menu", sel: "ÚNICA" }),
-          hs: C_DIR,
-        },
-        {
-          ...AFERIDOR_CLOSE,
-          lcd: calib({ tela: "menu", sel: "CONT." }),
-          hs: C_DIR,
-        },
-        {
-          ...AFERIDOR_CLOSE,
-          lcd: calib({ tela: "menu", sel: "SEQUENCIAL" }),
-          hs: C_ENTER,
-        },
-        {
-          ...AFERIDOR_CLOSE,
-          lcd: calib({ tela: "medicao", opcoes: ["SEQUENCIAL", "SAIR"] }),
-          hs: C_ENTER,
+          tipo: "calibrador", // termina ao iniciar a medição sequencial
+          estado: { ligado: true, tela: "medicao", modo: "unica", medindo: true, vazao: "0,0969", media: "0,0782", contador: "01 de 010" },
+          objetivo: { modo: "sequencial", medindo: true },
+          medicoes: { unica: { vazao: "0,0969", media: "0,0969", contador: "01 de 01" } },
         },
         {
           ...AFERIDOR_CLOSE,
@@ -515,8 +464,9 @@ export default {
         { img: "22", hs: CENA_CALIBRADOR },
         {
           ...AFERIDOR_CLOSE,
-          lcd: calib({ tela: "medicao", vazao: "0,0989", media: "0,1010" }),
-          hs: C_POWER,
+          tipo: "calibrador", // termina ao desligar
+          estado: { ligado: true, tela: "medicao", modo: "sequencial", medindo: true, vazao: "0,0989", media: "0,1010", contador: "10 de 010" },
+          objetivo: { ligado: false },
         },
         { ...AFERIDOR_CLOSE, auto: 800 },
         { img: "22", hs: { x: 23, y: 66 } }, // suporte do amostrador
@@ -748,26 +698,10 @@ export default {
         "Ligue o aferidor de vazão. Navegue até a função MEDIR e depois selecione a função SEQUENCIAL.",
       quadros: [
         { img: "47", hs: CENA_CALIBRADOR },
-        { ...AFERIDOR_CLOSE, hs: C_POWER },
-        { ...AFERIDOR_CLOSE, lcd: calib({ tela: "inicio" }), hs: C_ENTER },
         {
           ...AFERIDOR_CLOSE,
-          lcd: calib({ tela: "menu", sel: "ÚNICA" }),
-          hs: C_DIR,
-        },
-        {
-          ...AFERIDOR_CLOSE,
-          lcd: calib({ tela: "menu", sel: "CONT." }),
-          hs: C_DIR,
-        },
-        {
-          ...AFERIDOR_CLOSE,
-          lcd: calib({ tela: "menu", sel: "SEQUENCIAL" }),
-          hs: C_ENTER,
-        },
-        {
-          ...AFERIDOR_CLOSE,
-          lcd: calib({ tela: "medicao", opcoes: ["SEQUENCIAL", "SAIR"] }),
+          tipo: "calibrador", // começa desligado
+          objetivo: { tela: "medicao", modo: "sequencial", medindo: false },
         },
       ],
     },

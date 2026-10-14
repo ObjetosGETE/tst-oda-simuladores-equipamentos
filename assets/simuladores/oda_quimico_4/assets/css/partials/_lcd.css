@@ -144,6 +144,25 @@
   margin-top: calc(10px * var(--k));
 }
 
+/* aviso "Esse menu não será contemplado nesse simulador" */
+.lcd--calibrador .lcd__meio {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lcd--calibrador .lcd__aviso {
+  max-width: 82%;
+  padding: calc(14px * var(--k)) calc(24px * var(--k));
+  background: #2c322a;
+  color: #c9d0bd;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: calc(40px * var(--k));
+  line-height: 1.2;
+}
+
 /* ----- Termo-higro-barômetro ----- */
 .lcd--termo {
   --k: 0.61;

@@ -36,19 +36,29 @@ function telaBomba(d) {
 /* ---------- Calibrador de vazão ---------- */
 const OPCOES_MEDIR = ['ÚNICA', 'CONT.', 'SEQUENCIAL', 'CONFIG.'];
 
+/** Caixa escura no meio do visor (menus que o simulador não contempla). */
+function avisoCalibrador(d, opcoesPadrao, selPadrao) {
+  return [
+    el('div', { class: 'lcd__meio' }, el('div', { class: 'lcd__aviso' }, d.aviso)),
+    menu(d.opcoes || opcoesPadrao, d.sel || selPadrao),
+  ];
+}
+
 function telaCalibrador(d) {
   switch (d.tela) {
     case 'inicio':
+      if (d.aviso) return avisoCalibrador(d, ['MEDIR', 'CONFIGURAÇÃO'], 'MEDIR');
       return [
         el('div', { class: 'lcd__centro' }, 'Calibrador de vazão'),
         el('div', { class: 'lcd__centro' }, 'Faixa: 0,05 - 5 l/min'),
-        menu(['MEDIR', 'CONFIGURAÇÃO'], 'MEDIR'),
+        menu(d.opcoes || ['MEDIR', 'CONFIGURAÇÃO'], d.sel || 'MEDIR'),
       ];
     case 'menu':
+      if (d.aviso) return avisoCalibrador(d, OPCOES_MEDIR, 'ÚNICA');
       return [
         el('div', { class: 'lcd__centro' }, 'Realizar uma única medição'),
         el('div', { class: 'lcd__centro' }, '(010 consecutivas)'),
-        menu(OPCOES_MEDIR, d.sel || 'ÚNICA'),
+        menu(d.opcoes || OPCOES_MEDIR, d.sel || 'ÚNICA'),
       ];
     case 'medicao':
       return [

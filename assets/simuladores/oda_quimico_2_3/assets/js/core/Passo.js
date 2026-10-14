@@ -8,9 +8,10 @@ import { BotaoAvancar } from '../components/Botao.js';
 import { Ajuste } from '../components/Ajuste.js';
 import { Leituras } from '../components/Leituras.js';
 import { Espera } from '../components/Espera.js';
+import { Calibrador } from '../components/Calibrador.js';
 
 /** Interações especiais disponíveis para um quadro (quadro.tipo). */
-const INTERACOES = { ajuste: Ajuste, leituras: Leituras, espera: Espera };
+const INTERACOES = { ajuste: Ajuste, leituras: Leituras, espera: Espera, calibrador: Calibrador };
 
 /**
  * Executa um passo da simulação.
@@ -34,7 +35,8 @@ const INTERACOES = { ajuste: Ajuste, leituras: Leituras, espera: Espera };
  *   marcas: [{x,y}] bolinhas verdes de "feito"
  *   info / sucesso texto em caixa azul / verde
  *   instrucaoPosicao 'rodape' move a instrução para baixo (quando cobre o visor)
- *   tipo           'ajuste' | 'leituras' | 'espera'  (+ config no próprio quadro)
+ *   tipo           'ajuste' | 'leituras' | 'espera' | 'calibrador'  (+ config no próprio quadro)
+ *                  'calibrador' = aparelho com todos os botões funcionando (ver components/Calibrador.js)
  */
 export function executarPasso(camada, passo) {
   return new Promise((resolver) => {
