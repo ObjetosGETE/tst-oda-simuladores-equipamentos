@@ -32,4 +32,6 @@ export const watchResize = (selector = ".simulator-viewport") => {
   resizeWindow(selector);
   window.addEventListener("resize", onResize);
   window.visualViewport?.addEventListener("resize", onResize);
+  // Entrar/sair da tela cheia muda a área disponível: recalcula a escala
+  document.addEventListener("fullscreenchange", onResize);
 };

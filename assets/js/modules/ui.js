@@ -4,16 +4,25 @@
  */
 
 /**
- * Alterna tela cheia para um elemento.
- * @param {HTMLElement} element
+ * Alterna a tela cheia da PÁGINA INTEIRA (<html>).
+ *
+ * Importante: não colocar o palco (.simulator-viewport) em tela cheia.
+ * O navegador aplica ao elemento em tela cheia regras próprias com
+ * !important (width/height: 100% e transform: none) que o CSS do projeto
+ * não consegue sobrescrever. Isso desligava a escala do palco 1920×1080
+ * (resizeWindow.js) e o conteúdo era diagramado no tamanho real da tela,
+ * deixando textos e imagens "estourados". Com o <html> em tela cheia o
+ * palco continua sendo escalado normalmente.
+ *
+ * @returns {Promise<void>} resolve quando a troca termina
  */
-export const toggleFullscreen = (element = document.documentElement) => {
-  if (document.fullscreenElement) {
-    document.exitFullscreen();
-    return;
-  }
-  element.requestFullscreen().catch((err) => {
-    console.error(`Erro ao ativar tela cheia: ${err.message} (${err.name})`);
+export const toggleFullscreen = () => {
+  const request = document.fullscreenElement
+    ? document.exitFullscreen()
+    : document.documentElement.requestFullscreen();
+
+  return Promise.resolve(request).catch((err) => {
+    console.error(`Erro ao alternar tela cheia: ${err.message} (${err.name})`);
   });
 };
 

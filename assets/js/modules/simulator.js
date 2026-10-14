@@ -23,6 +23,29 @@ let frame = null;
 let titleEl = null;
 let currentSrc = null;
 
+const isOpen = () => !!(overlay && currentSrc && overlay.classList.contains("active"));
+
+/**
+ * Coloca o foco do teclado dentro do simulador (iframe).
+ * Além do elemento <iframe>, foca a janela interna e, quando houver,
+ * o <canvas> (simuladores Unity WebGL só recebem teclas com o canvas focado).
+ */
+const focusFrame = () => {
+  if (!isOpen()) return;
+  frame.focus({ preventScroll: true });
+  try {
+    const win = frame.contentWindow;
+    win?.focus();
+    const canvas = win?.document?.querySelector("canvas");
+    if (canvas) {
+      if (!canvas.hasAttribute("tabindex")) canvas.setAttribute("tabindex", "-1");
+      canvas.focus({ preventScroll: true });
+    }
+  } catch {
+    // Simulador em outra origem: o foco no <iframe> já é o possível.
+  }
+};
+
 /** Caminho do index.html do simulador de uma situação */
 export const simulatorUrl = (situation) =>
   situation?.simulador ? `${SIM_BASE}/${situation.simulador}/index.html` : null;
@@ -58,9 +81,22 @@ export const initSimulatorOverlay = ({ onClose, onFinish = onClose }) => {
   titleEl = overlay.querySelector(".sim-tab-title");
 
   overlay.querySelector(".sim-tab-close").addEventListener("click", () => onClose?.());
-  overlay
-    .querySelector(".sim-tab-fullscreen")
-    .addEventListener("click", () => toggleFullscreen(viewport));
+  const fullscreenBtn = overlay.querySelector(".sim-tab-fullscreen");
+  fullscreenBtn.addEventListener("click", () => {
+    fullscreenBtn.blur(); // o foco não deve ficar preso no botão do ODA
+    toggleFullscreen().then(focusFrame);
+  });
+
+  // Ao entrar/sair da tela cheia (inclusive pela tecla Esc), devolve o foco
+  // ao simulador. Espera um frame para o navegador terminar o redimensionamento.
+  document.addEventListener("fullscreenchange", () => {
+    if (isOpen()) requestAnimationFrame(focusFrame);
+  });
+
+  // Quando o simulador termina de carregar, já recebe o foco
+  frame.addEventListener("load", () => {
+    if (isOpen()) focusFrame();
+  });
 
   // Aviso de fim vindo do simulador (só aceita mensagens do próprio iframe)
   window.addEventListener("message", (e) => {
@@ -86,7 +122,7 @@ export const openSimulator = (situation) => {
   titleEl.textContent = `Situação ${situation.number}`;
   overlay.classList.add("active");
   overlay.setAttribute("aria-hidden", "false");
-  frame.focus();
+  focusFrame();
 };
 
 /** Fecha e descarrega o simulador (para áudio/vídeo e libera memória) */

@@ -15,7 +15,6 @@ import { initDetail, renderDetail } from "./modules/detail.js";
 import { toggleFullscreen, showToast } from "./modules/ui.js";
 
 const init = () => {
-  const viewport = document.querySelector(".simulator-viewport");
   const pages = {};
   for (let i = 1; i <= 5; i++) pages[i] = document.querySelector(`.page-${i}`);
 
@@ -24,7 +23,7 @@ const init = () => {
   // Eventos fixos (uma única vez)
   document
     .querySelectorAll(".btn-fullscreen")
-    .forEach((btn) => btn.addEventListener("click", () => toggleFullscreen(viewport)));
+    .forEach((btn) => btn.addEventListener("click", () => toggleFullscreen()));
   document.querySelector(".btn-start")?.addEventListener("click", () => setPage(2));
 
   initIntro(pages[2]);
